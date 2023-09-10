@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=d7o+&&_%*m6$vk4rzjgv(khe5-f3m=@r1caw-9#86tq5c_@7s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_filters',
     'bootstrapform',
     'snippets',
+    'whitenoise',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoise.Middleware',
 ]
 
 ROOT_URLCONF = 'filtering.urls'
@@ -76,10 +78,21 @@ WSGI_APPLICATION = 'filtering.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'modricuser',
+        'PASSWORD': 'alosiuskas',
+        'HOST': 'first-database-postgres-test.cqfmi8mawclb.eu-north-1.rds.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
@@ -124,3 +137,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
